@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 
-function Navbar() {
+function NavbarComp() {
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -20,4 +20,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarComp;
