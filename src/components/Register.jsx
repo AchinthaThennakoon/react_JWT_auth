@@ -1,51 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import userServives from "./userServives";
 
 function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { id, value } = e.target;
-    if (id === "firstName") {
-      setFirstName(value);
-    }
-    if (id === "lastName") {
-      setLastName(value);
-    }
-    if (id === "email") {
-      setEmail(value);
-    }
-    if (id === "password") {
-      setPassword(value);
-    }
-    if (id === "confirmPassword") {
-      setConfirmPassword(value);
-    }
 
-    console.log(
-      firstName +
-        " " +
-        lastName +
-        " " +
-        email +
-        " " +
-        password +
-        " " +
-        confirmPassword
-    );
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    };
 
     axios
-      .post("/register", {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-      })
-      .then((Response) => {
-        console.log(Response);
-      })
-      .catch((err) => {
-        console.log(err);
+      .post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
       });
   };
 
@@ -56,7 +28,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
-    <form className="col-8 offset-2 ">
+    <form className="col-8 offset-2 " onClick={handleSubmit}>
       <h3>Register</h3>
 
       <div className="form-group">
@@ -67,7 +39,7 @@ function Register() {
           placeholder="First name"
           id="firstName"
           value={firstName}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
 
@@ -79,7 +51,7 @@ function Register() {
           placeholder="Last name"
           id="lastName"
           value={lastName}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => setLastName(e.target.value)}
         />
       </div>
 
@@ -91,7 +63,7 @@ function Register() {
           placeholder="Enter email"
           id="email"
           value={email}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
@@ -103,7 +75,7 @@ function Register() {
           placeholder="Enter password"
           id="password"
           value={password}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
@@ -115,15 +87,11 @@ function Register() {
           placeholder="confirm password"
           id="confirmPassword"
           value={confirmPassword}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
 
-      <button
-        type="submit"
-        className="btn btn-dark btn-lg btn-block"
-        onClick={handleSubmit}
-      >
+      <button type="submit" className="btn btn-dark btn-lg btn-block">
         Register
       </button>
       <p className="forgot-password text-right">
