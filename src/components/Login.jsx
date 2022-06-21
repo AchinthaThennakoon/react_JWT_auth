@@ -7,7 +7,7 @@ function Login() {
     e.preventDefault();
 
     const data = {
-      email: email,
+      userName: username,
       password: password,
     };
 
@@ -19,7 +19,7 @@ function Login() {
       });
   };
 
-  const [email, setEmail] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -29,12 +29,12 @@ function Login() {
       <div className="form-group">
         <label>Email</label>
         <input
-          type="email"
+          type="text"
           className="form-control"
-          placeholder="Enter email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter username"
+          id="username"
+          value={username}
+          onChange={(e) => setUserName(e.target.value)}
         />
       </div>
 
